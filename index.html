@@ -9,7 +9,7 @@
 <meta property="og:description" content="Hair. Skin. Nails. Pilates. The 24 Society Café. An uncompromising sanctuary designed for the modern aesthetic.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="img/home-1100.webp">
-<meta name="theme-color" content="#1b1c1e">
+<meta name="theme-color" content="#17181a">
 <link rel="preload" href="fonts/tinos-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/josefin-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/style.css">
@@ -25,7 +25,6 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<!-- Preloader -->
 <div class="loader" id="loader" aria-hidden="true">
   <div class="loader__inner">
     <img class="loader__logo" src="img/logo.png" alt="" width="413" height="225">
@@ -33,13 +32,10 @@
   </div>
 </div>
 
-<!-- Header -->
 <header class="header" id="header">
-  <a class="brand" href="#top" aria-label="24 Society Salon & Wellness — home">
-    <img src="img/logo.png" alt="24 Society Salon &amp; Wellness" width="413" height="225">
-  </a>
+  <a class="brand" href="#top" aria-label="24 Society Salon &amp; Wellness — home"><img src="img/logo.png" alt="24 Society Salon &amp; Wellness" width="413" height="225"></a>
   <div class="header__right">
-    <a class="header__reserve" href="#reserve">Reserve</a>
+    <a class="btn btn--solid" href="#reserve">Reserve</a>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">
       <span class="menu-btn__label" data-open="Menu" data-close="Close">Menu</span>
       <span class="menu-btn__bars" aria-hidden="true"><i></i><i></i></span>
@@ -47,17 +43,17 @@
   </div>
 </header>
 
-<!-- Menu overlay -->
 <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Site menu" hidden>
   <nav class="menu__nav" aria-label="Primary">
     <ol>
-      <li><a href="#house"><span>01</span>The House</a></li>
-      <li><a href="#services"><span>02</span>Services</a></li>
-      <li><a href="#rates"><span>03</span>Rate Card</a></li>
-      <li><a href="#movement"><span>04</span>Pilates &amp; Café</a></li>
-      <li><a href="#bridal"><span>05</span>Bridal</a></li>
-      <li><a href="#membership"><span>06</span>Membership</a></li>
-      <li><a href="#reserve"><span>07</span>Contact</a></li>
+      <li><a href="#house">The house</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#disciplines">Disciplines</a></li>
+      <li><a href="#rates">Rate card</a></li>
+      <li><a href="#bridal">Bridal</a></li>
+      <li><a href="#membership">Membership</a></li>
+      <li><a href="#faq">Questions</a></li>
+      <li><a href="#reserve">Contact</a></li>
     </ol>
   </nav>
   <aside class="menu__meta">
@@ -71,183 +67,164 @@
 
 <main id="main">
 
-<!-- HERO -->
+<!-- HERO: full-bleed, shrinks into a photo collage as you scroll -->
 <section class="hero" id="top" aria-label="Introduction">
-  <div class="hero__slides" aria-hidden="true">
-    <img class="hero__slide is-active" src="img/home-2200.webp" srcset="img/home-1100.webp 1100w, img/home-2200.webp 2200w" sizes="100vw" alt="" width="2200" height="1467" fetchpriority="high">
-    <img class="hero__slide" src="img/hair-2200.webp" srcset="img/hair-1100.webp 1100w, img/hair-2200.webp 2200w" sizes="100vw" alt="" width="2200" height="1467">
-    <img class="hero__slide" src="img/skin-2200.webp" srcset="img/skin-1100.webp 1100w, img/skin-2200.webp 2200w" sizes="100vw" alt="" width="2200" height="1467">
-    <img class="hero__slide" src="img/pilates-2200.webp" srcset="img/pilates-1100.webp 1100w, img/pilates-2200.webp 2200w" sizes="100vw" alt="" width="2200" height="1467">
-    <img class="hero__slide" src="img/cafe-2200.webp" srcset="img/cafe-1100.webp 1100w, img/cafe-2200.webp 2200w" sizes="100vw" alt="" width="2200" height="1467">
-  </div>
-  <div class="hero__scrim" aria-hidden="true"></div>
-
-  <div class="hero__content">
-    <p class="label hero__eyebrow" data-hero>The House · Jaipur</p>
-    <h1 class="hero__title">
-      <span class="line"><span data-hero>A new architecture</span></span>
-      <span class="line"><span data-hero>of beauty <em>in Jaipur.</em></span></span>
-    </h1>
-  </div>
-
-  <div class="hero__foot">
-    <div class="hero__lede" data-hero>
-      <p>Hair. Skin. Nails. Pilates. The 24 Society Café.<br>An uncompromising sanctuary designed for the modern aesthetic.</p>
-      <div class="hero__cta">
-        <a class="btn btn--solid" href="#services" data-magnetic>Enter the House</a>
-        <a class="btn btn--line" href="#reserve" data-magnetic>Reserve</a>
-      </div>
+  <div class="hero__pin">
+    <div class="collage" aria-hidden="true">
+      <img src="img/hair-1100.webp" alt="" width="1100" height="734">
+      <img src="img/cafe-1100.webp" alt="" width="1100" height="734">
+      <img src="img/skin-1100.webp" alt="" width="1100" height="734">
+      <img src="img/bridal-1100.webp" alt="" width="1100" height="788">
+      <img src="img/home-1100.webp" alt="" width="1100" height="734">
+      <img src="img/pilates-1100.webp" alt="" width="1100" height="734">
     </div>
-    <div class="hero__meter" data-hero aria-hidden="true">
-      <div class="hero__caption"><span id="slideNum">01</span><i></i><span id="slideTotal">05</span></div>
-      <p class="hero__name" id="slideName">The House</p>
-      <div class="hero__bar"><i id="slideBar"></i></div>
+    <div class="hero__stage" id="stage">
+      <div class="hero__slides" aria-hidden="true">
+        <img class="hero__slide is-active" src="img/home-2200.webp" srcset="img/home-1100.webp 1100w, img/home-2200.webp 2200w" sizes="100vw" alt="" width="2200" height="1467" fetchpriority="high">
+        <img class="hero__slide" src="img/hair-2200.webp" srcset="img/hair-1100.webp 1100w, img/hair-2200.webp 2200w" sizes="100vw" alt="" width="2200" height="1467">
+        <img class="hero__slide" src="img/skin-2200.webp" srcset="img/skin-1100.webp 1100w, img/skin-2200.webp 2200w" sizes="100vw" alt="" width="2200" height="1467">
+        <img class="hero__slide" src="img/pilates-2200.webp" srcset="img/pilates-1100.webp 1100w, img/pilates-2200.webp 2200w" sizes="100vw" alt="" width="2200" height="1467">
+        <img class="hero__slide" src="img/cafe-2200.webp" srcset="img/cafe-1100.webp 1100w, img/cafe-2200.webp 2200w" sizes="100vw" alt="" width="2200" height="1467">
+      </div>
+      <div class="hero__scrim" aria-hidden="true"></div>
+      <div class="hero__content">
+        <h1 class="hero__title">
+          <span class="line"><span data-hero>A new architecture</span></span>
+          <span class="line"><span data-hero>of beauty</span></span>
+          <span class="line"><span data-hero><em>in Jaipur.</em></span></span>
+        </h1>
+        <div class="hero__cta" data-hero>
+          <a class="btn btn--solid" href="#services">Enter the house</a>
+          <a class="btn btn--ghost" href="#rates">See the rate card</a>
+        </div>
+      </div>
+      <p class="hero__tag hero__tag--a" data-hero>Hair. Skin. Nails.<br>Pilates. The Café.</p>
+      <p class="hero__tag hero__tag--b" data-hero>Jaipur's first fashion-forward<br>beauty and movement house.</p>
+      <div class="hero__meter" data-hero aria-hidden="true">
+        <span id="slideNum">01</span><i><b id="slideBar"></b></i><span id="slideTotal">05</span>
+        <span class="hero__name" id="slideName">The house</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- STANDARD -->
-<section class="standard section section--beige" id="house" aria-labelledby="standardTitle">
+<!-- STATEMENT -->
+<section class="section on-graphite" id="house" aria-labelledby="standardTitle">
   <div class="wrap">
-    <p class="label" data-reveal>The 24 Standard</p>
+    <p class="label" data-reveal>The 24 standard</p>
     <h2 class="statement" id="standardTitle" data-words>24 Society is not built to be another salon. It is built to be the one.</h2>
-    <div class="standard__body">
-      <p data-reveal>Precision without compromise. Luxury without announcement. Jaipur's first fashion-forward beauty and movement destination — for hair, skin, advanced treatments, Pilates and the 24 Society Café — built for those who know the difference.</p>
-      <dl class="stats" data-reveal>
-        <div><dt>Services</dt><dd><span data-count="24">24</span>+</dd></div>
-        <div><dt>Floors</dt><dd>Multi-level</dd></div>
-        <div><dt>City</dt><dd>Jaipur</dd></div>
-        <div><dt>Members</dt><dd>By invitation</dd></div>
-      </dl>
-    </div>
+    <dl class="stats" data-reveal>
+      <div><dt>Services</dt><dd>24+</dd></div>
+      <div><dt>Floors</dt><dd>Multi-level</dd></div>
+      <div><dt>City</dt><dd>Jaipur</dd></div>
+      <div><dt>Members</dt><dd>By invitation</dd></div>
+    </dl>
   </div>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee" aria-hidden="true"><div class="marquee__track">
-  <span>Hair Couture</span><span>Advanced Skin</span><span>Korean Scalp</span><span>Face Gym</span><span>Body Recovery</span><span>Recovery &amp; Reset</span><span>Nail Atelier</span><span>Makeup Artistry</span><span>Pilates</span><span>Yoga &amp; Sound</span><span>The 24 Society Café</span><span>Bridal</span>
-  <span>Hair Couture</span><span>Advanced Skin</span><span>Korean Scalp</span><span>Face Gym</span><span>Body Recovery</span><span>Recovery &amp; Reset</span><span>Nail Atelier</span><span>Makeup Artistry</span><span>Pilates</span><span>Yoga &amp; Sound</span><span>The 24 Society Café</span><span>Bridal</span>
-</div></div>
-
-<!-- GALLERY -->
-<section class="gallery section" aria-labelledby="galleryTitle">
-  <div class="wrap">
-    <header class="section__head">
-      <p class="label" data-reveal>Inside the house</p>
-      <h2 class="display" id="galleryTitle">Four rooms.<br><em>One standard.</em></h2>
-    </header>
-    <div class="gallery__grid">
-      <figure class="g g--1"><div class="g__img" data-parallax-wrap><img data-parallax src="img/hair-1100.webp" alt="The hair floor, with sculpted mirrors and warm architectural light" loading="lazy" width="1100" height="734"></div><figcaption><span>01</span>Hair Couture</figcaption></figure>
-      <figure class="g g--2"><div class="g__img" data-parallax-wrap><img data-parallax src="img/skin-1100.webp" alt="The advanced skin rooms" loading="lazy" width="1100" height="734"></div><figcaption><span>02</span>Advanced Skin</figcaption></figure>
-      <figure class="g g--3"><div class="g__img" data-parallax-wrap><img data-parallax src="img/pilates-1100.webp" alt="The Pilates Studio with reformers on a timber floor" loading="lazy" width="1100" height="734"></div><figcaption><span>03</span>The Pilates Studio</figcaption></figure>
-      <figure class="g g--4"><div class="g__img" data-parallax-wrap><img data-parallax src="img/cafe-1100.webp" alt="The 24 Society Café" loading="lazy" width="1100" height="734"></div><figcaption><span>04</span>The 24 Society Café</figcaption></figure>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES INDEX -->
-<section class="services section section--graphite" id="services" aria-labelledby="servicesTitle">
-  <div class="wrap">
-    <header class="section__head">
-      <p class="label" data-reveal>Services</p>
-      <h2 class="display" id="servicesTitle" data-reveal>The House.</h2>
-    </header>
-    <div class="services__grid">
-      <ol class="index" id="index">
-        <li class="index__row is-active" data-img="home"><a href="#rates" data-tab="hair-women"><span class="index__n">01</span><span class="index__t">Hair Couture</span><span class="index__d">The cut, the colour, the finish. Executed with the precision of a couture seam.</span></a></li>
-        <li class="index__row" data-img="skin"><a href="#rates" data-tab="skin"><span class="index__n">02</span><span class="index__t">Advanced Skin</span><span class="index__d">For those who understand the difference between a facial and a result.</span></a></li>
-        <li class="index__row" data-img="hair"><a href="#rates" data-tab="scalp"><span class="index__n">03</span><span class="index__t">Korean Scalp Treatment</span><span class="index__d">Clinical in method. Sensorial in experience.</span></a></li>
-        <li class="index__row" data-img="skin"><a href="#rates" data-tab="face"><span class="index__n">04</span><span class="index__t">Face Gym</span><span class="index__d">Facial toning, lifting and rejuvenation through a results-driven approach.</span></a></li>
-        <li class="index__row" data-img="home"><a href="#rates" data-tab="body"><span class="index__n">05</span><span class="index__t">Body Recovery</span><span class="index__d">For the body that performs. Recovery done properly.</span></a></li>
-        <li class="index__row" data-img="pilates"><a href="#rates" data-tab="recovery"><span class="index__n">06</span><span class="index__t">Recovery &amp; Reset</span><span class="index__d">Ice bath, steam and dry sauna — a considered recovery experience.</span></a></li>
-        <li class="index__row" data-img="home"><a href="#rates" data-tab="nails"><span class="index__n">07</span><span class="index__t">Nail Atelier</span><span class="index__d">Clean lines. Sharp finish. The detail that completes the look.</span></a></li>
-        <li class="index__row" data-img="bridal"><a href="#rates" data-tab="makeup"><span class="index__n">08</span><span class="index__t">Makeup Artistry</span><span class="index__d">Not coverage. Composition.</span></a></li>
-        <li class="index__row" data-img="pilates"><a href="#movement"><span class="index__n">09</span><span class="index__t">Pilates Studio</span><span class="index__d">Strength. Posture. The discipline that shows in how you carry yourself.</span></a></li>
-        <li class="index__row" data-img="pilates"><a href="#movement"><span class="index__n">10</span><span class="index__t">Yoga &amp; Sound</span><span class="index__d">Breath, balance and sound healing — an appointment for the nervous system.</span></a></li>
-        <li class="index__row" data-img="cafe"><a href="#movement"><span class="index__n">11</span><span class="index__t">24 Society Café</span><span class="index__d">Ceremonial matcha. Considered bites. The only acceptable reason to linger.</span></a></li>
-        <li class="index__row" data-img="bridal"><a href="#bridal"><span class="index__n">12</span><span class="index__t">Bridal</span><span class="index__d">Not a package. A calendar.</span></a></li>
-      </ol>
-      <div class="preview" id="preview" aria-hidden="true">
-        <img data-key="home" class="is-active" src="img/home-1100.webp" alt="" loading="lazy" width="1100" height="734">
-        <img data-key="hair" src="img/hair-1100.webp" alt="" loading="lazy" width="1100" height="734">
-        <img data-key="skin" src="img/skin-1100.webp" alt="" loading="lazy" width="1100" height="734">
-        <img data-key="pilates" src="img/pilates-1100.webp" alt="" loading="lazy" width="1100" height="734">
-        <img data-key="cafe" src="img/cafe-1100.webp" alt="" loading="lazy" width="1100" height="734">
-        <img data-key="bridal" src="img/bridal-1100.webp" alt="" loading="lazy" width="1100" height="788">
+<!-- SERVICES: pinned timeline with a framed image -->
+<section class="showcase on-beige" id="services" aria-labelledby="servicesTitle">
+  <div class="showcase__pin">
+    <div class="wrap">
+      <header class="head head--center">
+        <p class="label">Services</p>
+        <h2 class="display" id="servicesTitle">Twenty-four services.<br><em>One standard.</em></h2>
+      </header>
+      <div class="showcase__grid">
+        <ol class="tl" id="tl">
+          <li><button class="tl__item is-active" data-i="0"><span class="tl__t">Hair Couture</span><span class="tl__s">Cut · Colour · Finish</span></button></li>
+          <li><button class="tl__item" data-i="1"><span class="tl__t">Advanced Skin</span><span class="tl__s">Radiance · Hydration · Better aging</span></button></li>
+          <li><button class="tl__item" data-i="2"><span class="tl__t">Nail Atelier</span><span class="tl__s">Manicure · Pedicure · Gel &amp; extensions</span></button></li>
+          <li><button class="tl__item" data-i="3"><span class="tl__t">Pilates Studio</span><span class="tl__s">Reformer · Mat · Bridal · Post-natal</span></button></li>
+          <li><button class="tl__item" data-i="4"><span class="tl__t">The 24 Society Café</span><span class="tl__s">Matcha · Coffee · Considered bites</span></button></li>
+          <li><button class="tl__item" data-i="5"><span class="tl__t">Bridal</span><span class="tl__s">A calendar, not a package</span></button></li>
+        </ol>
+        <div class="frame" id="frame" aria-hidden="true">
+          <img class="is-active" src="img/hair-1100.webp" srcset="img/hair-1100.webp 1100w, img/hair-2200.webp 2200w" sizes="(min-width:900px) 60vw, 100vw" alt="" loading="lazy" width="1100" height="734">
+          <img src="img/skin-1100.webp" srcset="img/skin-1100.webp 1100w, img/skin-2200.webp 2200w" sizes="(min-width:900px) 60vw, 100vw" alt="" loading="lazy" width="1100" height="734">
+          <img src="img/home-1100.webp" srcset="img/home-1100.webp 1100w, img/home-2200.webp 2200w" sizes="(min-width:900px) 60vw, 100vw" alt="" loading="lazy" width="1100" height="734">
+          <img src="img/pilates-1100.webp" srcset="img/pilates-1100.webp 1100w, img/pilates-2200.webp 2200w" sizes="(min-width:900px) 60vw, 100vw" alt="" loading="lazy" width="1100" height="734">
+          <img src="img/cafe-1100.webp" srcset="img/cafe-1100.webp 1100w, img/cafe-2200.webp 2200w" sizes="(min-width:900px) 60vw, 100vw" alt="" loading="lazy" width="1100" height="734">
+          <img src="img/bridal-1100.webp" alt="" loading="lazy" width="1100" height="788">
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- HAIR FEATURE -->
-<section class="feature" aria-labelledby="hairTitle">
-  <div class="feature__media" data-parallax-wrap>
-    <img src="img/hair-2200.webp" srcset="img/hair-1100.webp 1100w, img/hair-2200.webp 2200w" sizes="100vw" alt="Hair Couture floor at 24 Society, with sculpted mirrors and warm architectural lighting" loading="lazy" width="2200" height="1467" data-parallax>
+<!-- DISCIPLINES: horizontal cards -->
+<section class="cards on-graphite section" id="disciplines" aria-labelledby="cardsTitle">
+  <div class="wrap">
+    <header class="head">
+      <p class="label" data-reveal>Disciplines</p>
+      <h2 class="display" id="cardsTitle">One house.<br><em>Every discipline.</em></h2>
+    </header>
   </div>
-  <div class="feature__scrim" aria-hidden="true"></div>
-  <div class="wrap feature__content">
-    <p class="label" data-reveal>Hair Couture</p>
-    <h2 class="display display--xl" id="hairTitle" data-reveal>The cut.<br>The colour.<br><em>The finish.</em></h2>
-    <p class="feature__p" data-reveal>Every appointment begins with a consultation. Every cut is engineered around the way you carry yourself. Every colour is composed, not chosen from a chart.</p>
-    <a class="link" href="#rates" data-tab="hair-women" data-reveal>View hair pricing <span aria-hidden="true">→</span></a>
+  <div class="cards__track" id="cardsTrack">
+    <article class="card is-hot"><div class="card__top"><a class="icon-btn" href="#rates" data-tab="hair-women" aria-label="Hair Couture pricing"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M5.5 4H12v6.5"/></svg></a></div><div><h3>Hair Couture</h3><ul><li>Cut &amp; styling</li><li>Colour</li><li>Hair care rituals</li><li>Texture treatment</li></ul></div></article>
+    <article class="card"><div class="card__top"><a class="icon-btn" href="#rates" data-tab="skin" aria-label="Advanced Skin pricing"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M5.5 4H12v6.5"/></svg></a></div><div><h3>Advanced Skin</h3><ul><li>Radiance Antiox</li><li>Multi-Peptide Better Aging</li><li>CityLife Hydration</li><li>Clarifying Mineral</li></ul></div></article>
+    <article class="card"><div class="card__top"><a class="icon-btn" href="#rates" data-tab="scalp" aria-label="Korean Scalp pricing"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M5.5 4H12v6.5"/></svg></a></div><div><h3>Korean Scalp</h3><ul><li>Express scalp treatment</li><li>Dry &amp; oily scalp</li><li>Dandruff</li><li>Hair fall</li></ul></div></article>
+    <article class="card"><div class="card__top"><a class="icon-btn" href="#rates" data-tab="face" aria-label="Face Gym pricing"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M5.5 4H12v6.5"/></svg></a></div><div><h3>Face Gym</h3><ul><li>Cardio Lift</li><li>Sculpt &amp; Define</li><li>Recovery Reset</li><li>LED light therapy</li></ul></div></article>
+    <article class="card"><div class="card__top"><a class="icon-btn" href="#rates" data-tab="body" aria-label="Body Recovery pricing"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M5.5 4H12v6.5"/></svg></a></div><div><h3>Body Recovery</h3><ul><li>Swedish &amp; Balinese</li><li>Deep tissue</li><li>Hot stone</li><li>Lymphatic drainage</li></ul></div></article>
+    <article class="card"><div class="card__top"><a class="icon-btn" href="#rates" data-tab="recovery" aria-label="Recovery and Reset pricing"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M5.5 4H12v6.5"/></svg></a></div><div><h3>Recovery &amp; Reset</h3><ul><li>Ice bath</li><li>Steam</li><li>Dry sauna</li><li>Body wraps</li></ul></div></article>
+    <article class="card"><div class="card__top"><a class="icon-btn" href="#rates" data-tab="nails" aria-label="Nail Atelier pricing"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M5.5 4H12v6.5"/></svg></a></div><div><h3>Nail Atelier</h3><ul><li>Manicure</li><li>Pedicure</li><li>Gel polish</li><li>Extensions</li></ul></div></article>
+    <article class="card"><div class="card__top"><a class="icon-btn" href="#rates" data-tab="makeup" aria-label="Makeup pricing"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M5.5 4H12v6.5"/></svg></a></div><div><h3>Makeup Artistry</h3><ul><li>Evening party</li><li>Eye makeup</li><li>Saree draping</li><li>Bridal makeup</li></ul></div></article>
+    <article class="card"><div class="card__top"><a class="icon-btn" href="#reserve" data-service="Pilates" aria-label="Reserve Pilates"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M5.5 4H12v6.5"/></svg></a></div><div><h3>Pilates &amp; Yoga</h3><ul><li>Reformer group, max four</li><li>Private reformer</li><li>Yoga sessions</li><li>Sound recovery room</li></ul></div></article>
+    <article class="card"><div class="card__top"><a class="icon-btn" href="#reserve" data-service="The 24 Society Café" aria-label="Reserve the Café"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M5.5 4H12v6.5"/></svg></a></div><div><h3>The Café</h3><ul><li>Matcha &amp; tea</li><li>Specialty coffee</li><li>Considered bites</li><li>Private bookings</li></ul></div></article>
   </div>
 </section>
 
-<!-- RITUAL -->
-<section class="ritual section section--graphite" id="ritual" aria-labelledby="ritualTitle">
-  <div class="wrap ritual__grid">
-    <header class="ritual__head">
-      <p class="label" data-reveal>The Ritual</p>
-      <h2 class="display" id="ritualTitle" data-reveal>The<br>Appointment.</h2>
-      <p class="ritual__sub" data-reveal>Five movements. One house standard.</p>
+<!-- PRINCIPLES -->
+<section class="section on-graphite" aria-labelledby="princTitle" style="padding-top:0">
+  <div class="wrap">
+    <header class="head head--center">
+      <p class="label" data-reveal>Not a salon. A house.</p>
+      <h2 class="display" id="princTitle">Precision. Restraint.<br><em>Confidence.</em></h2>
+      <p class="lede" data-reveal>Every floor, every treatment and every corner operates to the same standard. We do not announce our luxury. It is apparent from the moment you arrive.</p>
     </header>
-    <ol class="ritual__list" id="ritualList">
-      <li><span class="ritual__n">01</span><div><h3>Arrival</h3><p>The house receives you.</p></div></li>
-      <li><span class="ritual__n">02</span><div><h3>Consultation</h3><p>We understand before we begin.</p></div></li>
-      <li><span class="ritual__n">03</span><div><h3>The Standard</h3><p>Technique without shortcuts.</p></div></li>
-      <li><span class="ritual__n">04</span><div><h3>The Finish</h3><p>Precise. Deliberate. Yours.</p></div></li>
-      <li><span class="ritual__n">05</span><div><h3>Continuity</h3><p>A recommendation to sustain the result.</p></div></li>
+    <div class="principles">
+      <article class="principle" data-reveal>
+        <svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="16"/><circle cx="22" cy="22" r="6"/><path d="M22 2v8M22 34v8M2 22h8M34 22h8"/></svg>
+        <h3>Precision</h3>
+        <p>A single house standard across every consultation, cut and colour. Technique without shortcuts.</p>
+      </article>
+      <article class="principle" data-reveal>
+        <svg viewBox="0 0 44 44" aria-hidden="true"><path d="M10 40V20a12 12 0 0 1 24 0v20z"/><path d="M4 40h36"/></svg>
+        <h3>Restraint</h3>
+        <p>Luxury without announcement. Nothing is added for show, and nothing is missing.</p>
+      </article>
+      <article class="principle" data-reveal>
+        <svg viewBox="0 0 44 44" aria-hidden="true"><path d="M22 4l5 13 13 5-13 5-5 13-5-13-13-5 13-5z"/></svg>
+        <h3>Confidence</h3>
+        <p>Luxury beauty in India should look, feel and operate at the level the world's best addresses do.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- APPOINTMENT -->
+<section class="section on-graphite" style="padding-top:0" aria-labelledby="ritualTitle">
+  <div class="wrap">
+    <header class="head">
+      <p class="label" data-reveal>The ritual</p>
+      <h2 class="display" id="ritualTitle">The appointment.</h2>
+    </header>
+    <ol class="rows">
+      <li class="row" data-reveal><span class="row__n">01</span><h3>Arrival</h3><p>The house receives you.</p></li>
+      <li class="row" data-reveal><span class="row__n">02</span><h3>Consultation</h3><p>We understand before we begin.</p></li>
+      <li class="row" data-reveal><span class="row__n">03</span><h3>The standard</h3><p>Technique without shortcuts.</p></li>
+      <li class="row" data-reveal><span class="row__n">04</span><h3>The finish</h3><p>Precise. Deliberate. Yours.</p></li>
+      <li class="row" data-reveal><span class="row__n">05</span><h3>Continuity</h3><p>A recommendation to sustain the result.</p></li>
     </ol>
   </div>
 </section>
 
-<!-- FLOORS (horizontal) -->
-<section class="floors" id="floors" aria-labelledby="floorsTitle">
-  <div class="floors__pin">
-    <header class="floors__head wrap">
-      <p class="label">Philosophy</p>
-      <h2 class="display" id="floorsTitle">Not a salon.<br><em>A house.</em></h2>
-      <p class="floors__lede">Every floor, every treatment and every corner operates to the same standard. Precision. Restraint. Confidence. We do not announce our luxury. It is apparent from the moment you arrive.</p>
-    </header>
-    <div class="floors__track" id="floorsTrack">
-      <article class="floor">
-        <div class="floor__img"><img src="img/hair-1100.webp" alt="Ground floor — hair couture" loading="lazy" width="1100" height="734"></div>
-        <p class="floor__n">01</p>
-        <h3>Ground &amp; Below</h3>
-        <p>Beauty and skin — hair couture, advanced treatments, the nail atelier and the beauty bar.</p>
-      </article>
-      <article class="floor">
-        <div class="floor__img"><img src="img/pilates-1100.webp" alt="The Pilates Studio" loading="lazy" width="1100" height="734"></div>
-        <p class="floor__n">02</p>
-        <h3>The Pilates Studio</h3>
-        <p>Movement, posture and discipline. The floor where the aesthetic is built.</p>
-      </article>
-      <article class="floor">
-        <div class="floor__img"><img src="img/cafe-1100.webp" alt="The 24 Society Café" loading="lazy" width="1100" height="734"></div>
-        <p class="floor__n">03</p>
-        <h3>The 24 Society Café</h3>
-        <p>Where the appointment ends and the afternoon begins. The house is in no rush.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
 <!-- RATE CARD -->
-<section class="rates section section--beige" id="rates" aria-labelledby="ratesTitle">
+<section class="section on-beige" id="rates" aria-labelledby="ratesTitle">
   <div class="wrap">
-    <header class="section__head">
-      <p class="label" data-reveal>Rate Card</p>
-      <h2 class="display" id="ratesTitle" data-reveal>Every service.<br><em>Every price.</em></h2>
+    <header class="head">
+      <p class="label" data-reveal>Rate card</p>
+      <h2 class="display" id="ratesTitle">Every service.<br><em>Every price.</em></h2>
       <p class="rates__note" data-reveal>All prices in INR, exclusive of GST. Terms &amp; conditions apply. Hair pricing is by stylist level; all other services are single-priced. <sup>op</sup> marks onwards pricing.</p>
     </header>
     <div class="tabs" role="tablist" aria-label="Service categories" id="tabs"></div>
@@ -255,138 +232,85 @@
   </div>
 </section>
 
-<!-- MOVEMENT & CAFE -->
-<section class="movement section section--graphite" id="movement" aria-labelledby="movementTitle">
-  <div class="wrap">
-    <header class="section__head">
-      <p class="label" data-reveal>Movement &amp; Café</p>
-      <h2 class="display" id="movementTitle" data-reveal>The body, <em>disciplined.</em><br>The afternoon, unhurried.</h2>
-    </header>
-    <div class="cols">
-      <article class="col" data-reveal>
-        <p class="label">The Pilates Studio</p>
-        <h3>Movement as precise as the cut downstairs.</h3>
-        <p class="col__p">Small-group and private sessions on classical and contemporary reformers — engineered for posture, strength and the way you move through your day.</p>
-        <ul class="plain">
-          <li><b>Reformer Group</b> Small-group classes — maximum four members.</li>
-          <li><b>Private Reformer</b> One-to-one with a senior instructor.</li>
-          <li><b>Mat Pilates</b> Foundation, breath and control.</li>
-          <li><b>Bridal Pilates</b> Posture for the aisle. Strength for the days.</li>
-          <li><b>Post-Natal</b> A specialist protocol for a specific season.</li>
-        </ul>
-        <a class="link" href="#reserve" data-service="Pilates">Reserve Pilates <span aria-hidden="true">→</span></a>
-      </article>
-      <article class="col" data-reveal>
-        <p class="label">The Second Floor</p>
-        <h3>Movement. Recovery. Stillness.</h3>
-        <p class="col__p">Where the house slows down. Yoga, sound and considered recovery — the deeper appointments.</p>
-        <ul class="plain">
-          <li><b>Yoga Sessions</b> Hatha · Vinyasa · Restorative · Private.</li>
-          <li><b>Sound Recovery Room</b> Sound bath · Guided meditation · Breathwork · Private session.</li>
-          <li><b>Reset Packages</b> Curated combinations for the seasons that need more than a single appointment.</li>
-        </ul>
-        <a class="link" href="#reserve" data-service="Recovery & Reset">Reserve the Second Floor <span aria-hidden="true">→</span></a>
-      </article>
-      <article class="col" data-reveal>
-        <p class="label">The 24 Society Café</p>
-        <h3>Where the appointment ends and the afternoon begins.</h3>
-        <p class="col__p">Ceremonial matcha. Considered bites. A quiet room, a slow pour, and the only acceptable reason to linger between appointments.</p>
-        <ul class="plain">
-          <li><b>Matcha &amp; Tea</b> Ceremonial-grade matcha and single-origin loose leaf.</li>
-          <li><b>Coffee</b> Specialty coffee, quietly excellent.</li>
-          <li><b>Considered Bites</b> A small, edited menu — clean, seasonal, elegant.</li>
-          <li><b>Private Bookings</b> The Café can be reserved for private experiences.</li>
-        </ul>
-        <a class="link" href="#reserve" data-service="The 24 Society Café">Reserve the Café <span aria-hidden="true">→</span></a>
-      </article>
-    </div>
-  </div>
-</section>
-
 <!-- BRIDAL -->
-<section class="bridal section section--beige" id="bridal" aria-labelledby="bridalTitle">
+<section class="section on-graphite" id="bridal" aria-labelledby="bridalTitle">
   <div class="wrap bridal__grid">
     <div class="bridal__media">
-      <div class="bridal__frame" data-parallax-wrap>
-        <img src="img/bridal-1408.webp" srcset="img/bridal-1100.webp 1100w, img/bridal-1408.webp 1408w" sizes="(min-width:900px) 45vw, 100vw" alt="Bridal hand jewellery on ivory silk" loading="lazy" width="1408" height="1008" data-parallax>
-      </div>
+      <div class="bridal__frame"><img src="img/bridal-1408.webp" srcset="img/bridal-1100.webp 1100w, img/bridal-1408.webp 1408w" sizes="(min-width:900px) 45vw, 100vw" alt="Bridal hand jewellery on ivory silk" loading="lazy" width="1408" height="1008"></div>
     </div>
     <div class="bridal__copy">
       <p class="label" data-reveal>Bridal</p>
-      <h2 class="display" id="bridalTitle" data-reveal>The most important look of your life deserves the most <em>considered hands.</em></h2>
-      <p data-reveal>Bridal at 24 Society is not a package. It is a calendar. Composed months in advance across skin, hair, makeup, movement and recovery — for the bride, the wedding party and the mornings that only happen once.</p>
+      <h2 class="display" id="bridalTitle">The most important look of your life deserves the most <em>considered hands.</em></h2>
+      <p data-reveal>Bridal at 24 Society is not a package. It is a calendar. Composed months in advance across skin, hair, makeup, movement and recovery, for the bride, the wedding party and the mornings that only happen once.</p>
       <ol class="steps">
         <li><span>01</span><div><h3>Consultation</h3><p>The house meets the bride.</p></div></li>
-        <li><span>02</span><div><h3>Skin Plan</h3><p>A pre-wedding protocol composed across months, not weeks.</p></div></li>
-        <li><span>03</span><div><h3>Hair Plan</h3><p>Colour, condition and event-day styling planned together.</p></div></li>
-        <li><span>04</span><div><h3>Trial Days</h3><p>Refined until the look is a decision, not a hope.</p></div></li>
-        <li><span>05</span><div><h3>Movement &amp; Recovery</h3><p>Bridal Pilates scheduled around your calendar.</p></div></li>
-        <li><span>06</span><div><h3>Wedding Morning</h3><p>The house at your address, or yours at ours.</p></div></li>
-        <li><span>07</span><div><h3>Event Looks</h3><p>Engagement, mehendi, sangeet, wedding and reception.</p></div></li>
-        <li><span>08</span><div><h3>Post-Wedding Recovery</h3><p>The morning after, handled.</p></div></li>
+        <li><span>02</span><div><h3>Skin plan</h3><p>A pre-wedding protocol composed across months, not weeks.</p></div></li>
+        <li><span>03</span><div><h3>Hair plan</h3><p>Colour, condition and event-day styling planned together.</p></div></li>
+        <li><span>04</span><div><h3>Trial days</h3><p>Refined until the look is a decision, not a hope.</p></div></li>
+        <li><span>05</span><div><h3>Movement &amp; recovery</h3><p>Bridal Pilates scheduled around your calendar.</p></div></li>
+        <li><span>06</span><div><h3>Wedding morning</h3><p>The house at your address, or yours at ours.</p></div></li>
+        <li><span>07</span><div><h3>Event looks</h3><p>Engagement, mehendi, sangeet, wedding and reception.</p></div></li>
+        <li><span>08</span><div><h3>Post-wedding recovery</h3><p>The morning after, handled.</p></div></li>
       </ol>
-      <a class="btn btn--dark" href="#reserve" data-service="Bridal Consultation" data-magnetic>Book a bridal consultation</a>
+      <a class="btn btn--solid" href="#reserve" data-service="Bridal Consultation">Book a bridal consultation</a>
     </div>
   </div>
 </section>
 
 <!-- MEMBERSHIP -->
-<section class="membership section section--graphite" id="membership" aria-labelledby="memTitle">
+<section class="section on-graphite" id="membership" style="padding-top:0" aria-labelledby="memTitle">
   <div class="wrap">
-    <header class="section__head">
+    <header class="head">
       <p class="label" data-reveal>Membership</p>
-      <h2 class="display" id="memTitle" data-reveal>By invitation<br><em>or by choice.</em></h2>
-      <p class="section__lede" data-reveal>For those who do not settle for available. They reserve. They expect. They return.</p>
+      <h2 class="display" id="memTitle">By invitation<br><em>or by choice.</em></h2>
+      <p class="lede" data-reveal>For those who do not settle for available. They reserve. They expect. They return.</p>
     </header>
     <div class="tiers">
       <article class="tier" data-reveal>
-        <p class="label">Tier 01</p>
-        <h3>The House</h3>
-        <p class="tier__sub">The everyday membership.</p>
-        <ul class="ticks">
-          <li>Priority reservations across all services</li>
-          <li>Members-only pricing on signature treatments</li>
-          <li>Complimentary express services each month</li>
-          <li>Member-only hours at the Café</li>
-        </ul>
-        <a class="link" href="#reserve" data-service="Membership Enquiry">Enquire <span aria-hidden="true">→</span></a>
+        <p class="label">Tier one</p><h3>The House</h3><p class="tier__sub">The everyday membership.</p>
+        <ul class="ticks"><li>Priority reservations across all services</li><li>Members-only pricing on signature treatments</li><li>Complimentary express services each month</li><li>Member-only hours at the Café</li></ul>
+        <a class="btn btn--ghost" href="#reserve" data-service="Membership Enquiry">Enquire</a>
       </article>
       <article class="tier tier--mid" data-reveal>
-        <p class="label">Tier 02 · Signature</p>
-        <h3>The Atelier</h3>
-        <p class="tier__sub">The considered membership.</p>
-        <ul class="ticks">
-          <li>Everything in The House</li>
-          <li>Dedicated concierge for appointments and bridal calendars</li>
-          <li>Two signature services per month</li>
-          <li>Reserved seat at the Pilates Studio</li>
-          <li>Private experiences and preview events</li>
-        </ul>
-        <a class="link" href="#reserve" data-service="Membership Enquiry">Enquire <span aria-hidden="true">→</span></a>
+        <p class="label">Tier two · Signature</p><h3>The Atelier</h3><p class="tier__sub">The considered membership.</p>
+        <ul class="ticks"><li>Everything in The House</li><li>Dedicated concierge for appointments and bridal calendars</li><li>Two signature services per month</li><li>Reserved seat at the Pilates Studio</li><li>Private experiences and preview events</li></ul>
+        <a class="btn btn--dark" href="#reserve" data-service="Membership Enquiry">Enquire</a>
       </article>
       <article class="tier" data-reveal>
-        <p class="label">Tier 03 · By invitation only</p>
-        <h3>The Salon Privé</h3>
-        <p class="tier__sub">The house, when you need it.</p>
-        <ul class="ticks">
-          <li>Everything in The Atelier</li>
-          <li>Unlimited priority access, house-wide</li>
-          <li>Private appointments outside standard hours</li>
-          <li>Bespoke bridal and family calendars</li>
-        </ul>
-        <a class="link" href="#reserve" data-service="Membership Enquiry">Enquire <span aria-hidden="true">→</span></a>
+        <p class="label">Tier three · By invitation only</p><h3>The Salon Privé</h3><p class="tier__sub">The house, when you need it.</p>
+        <ul class="ticks"><li>Everything in The Atelier</li><li>Unlimited priority access, house-wide</li><li>Private appointments outside standard hours</li><li>Bespoke bridal and family calendars</li></ul>
+        <a class="btn btn--ghost" href="#reserve" data-service="Membership Enquiry">Enquire</a>
       </article>
     </div>
-    <p class="tiers__note" data-reveal>Tier names, pricing and full benefit matrix are refined for each member on enquiry.</p>
+    <p class="tiers__note" data-reveal>Tier names, pricing and the full benefit matrix are refined for each member on enquiry.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section on-graphite" id="faq" style="padding-top:0" aria-labelledby="faqTitle">
+  <div class="wrap">
+    <header class="head head--center">
+      <p class="label" data-reveal>Good to know</p>
+      <h2 class="display" id="faqTitle">Questions, answered.</h2>
+    </header>
+    <div class="faq">
+      <details><summary>Where is the house?</summary><p>24 Society Salon &amp; Wellness, E3A, Shri Rangam, New Colony, Panch Batti, MI Road, Jaipur 302001.</p></details>
+      <details><summary>When are you open?</summary><p>Monday to Sunday, 09:00 to 21:00, by reservation.</p></details>
+      <details><summary>How do I reserve?</summary><p>Call +91 92510 49696 or +91 92510 49695, write to jaipurdesk@24societysalonandwellness.com, or use the enquiry form below. Every enquiry is answered by a member of the house.</p></details>
+      <details><summary>Are the prices inclusive of GST?</summary><p>All prices are in INR and exclusive of GST, with terms and conditions applying. Hair is priced by stylist level; every other service is single-priced.</p></details>
+      <details><summary>How does bridal work?</summary><p>Bridal is a calendar, not a package: consultation, a skin plan, a hair plan, trial days, movement and recovery, the wedding morning and event looks. Bridal hair and makeup is ₹30,000 at the salon and ₹65,000 at your venue.</p></details>
+      <details><summary>Can the Café be booked privately?</summary><p>Yes. The 24 Society Café can be reserved for private experiences. Contact the house for details.</p></details>
+      <details><summary>How do I join as a member?</summary><p>Membership is by invitation or by choice. Tier names, pricing and the full benefit matrix are refined for each member on enquiry.</p></details>
+    </div>
   </div>
 </section>
 
 <!-- RESERVE -->
-<section class="reserve section section--beige" id="reserve" aria-labelledby="reserveTitle">
+<section class="section on-beige" id="reserve" aria-labelledby="reserveTitle">
   <div class="wrap reserve__grid">
     <div class="reserve__info">
-      <p class="label" data-reveal>Contact the House</p>
-      <h2 class="display display--xl" id="reserveTitle" data-reveal>Reservations.<br><em>Enquiries.</em></h2>
+      <p class="label" data-reveal>Contact the house</p>
+      <h2 class="display" id="reserveTitle">Reservations.<br><em>Enquiries.</em></h2>
       <p data-reveal>Every enquiry is answered by a member of the house. Please allow us the time to reply personally.</p>
       <dl class="facts" data-reveal>
         <div><dt>Visit</dt><dd>24 Society Salon &amp; Wellness<br>E3A, Shri Rangam, New Colony<br>Panch Batti, MI Road<br>Jaipur 302001</dd></div>
@@ -394,7 +318,7 @@
         <div><dt>Direct</dt><dd><a href="tel:+919251049696">+91 92510 49696</a><br><a href="tel:+919251049695">+91 92510 49695</a><br><a href="mailto:jaipurdesk@24societysalonandwellness.com">jaipurdesk@24societysalonandwellness.com</a></dd></div>
         <div><dt>Follow</dt><dd><a href="https://instagram.com/24societysalonandwellness" rel="noopener">@24societysalonandwellness</a></dd></div>
       </dl>
-      <a class="link link--dark" href="https://www.google.com/maps/search/?api=1&amp;query=24+Society+Salon+and+Wellness+Panch+Batti+MI+Road+Jaipur" rel="noopener" target="_blank">Get directions <span aria-hidden="true">↗</span></a>
+      <a class="btn btn--outline-dark" href="https://www.google.com/maps/search/?api=1&amp;query=24+Society+Salon+and+Wellness+Panch+Batti+MI+Road+Jaipur" rel="noopener" target="_blank">Get directions</a>
     </div>
     <form class="form" id="form" novalidate data-reveal>
       <div class="field"><label for="f-name">Full name</label><input id="f-name" name="name" autocomplete="name" required></div>
@@ -410,7 +334,7 @@
         </select></div>
       <div class="field"><label for="f-msg">Message</label><textarea id="f-msg" name="message" rows="4"></textarea></div>
       <p class="form__err" id="formErr" role="alert" hidden></p>
-      <button class="btn btn--dark" type="submit" data-magnetic>Send enquiry</button>
+      <button class="btn btn--dark" type="submit">Send enquiry</button>
       <p class="form__hint">Opens your email app with the enquiry ready to send.</p>
     </form>
   </div>
@@ -420,12 +344,12 @@
 <footer class="footer">
   <div class="wrap">
     <div class="footer__top">
-      <img class="footer__logo" src="img/logo.png" alt="24 Society Salon & Wellness" width="413" height="225" loading="lazy">
+      <img class="footer__logo" src="img/logo.png" alt="24 Society Salon &amp; Wellness" width="413" height="225" loading="lazy">
       <p class="footer__tag">Arrive different.<br><em>Leave definitive.</em></p>
     </div>
     <div class="footer__cols">
-      <div><p class="label">The House</p><ul><li><a href="#house">About</a></li><li><a href="#floors">Our Space</a></li><li><a href="#membership">Membership</a></li><li><a href="#bridal">Bridal</a></li></ul></div>
-      <div><p class="label">Services</p><ul><li><a href="#rates" data-tab="hair-women">Hair</a></li><li><a href="#rates" data-tab="skin">Skin</a></li><li><a href="#rates" data-tab="scalp">Scalp</a></li><li><a href="#rates" data-tab="nails">Nails</a></li><li><a href="#movement">Pilates &amp; Café</a></li></ul></div>
+      <div><p class="label">The house</p><ul><li><a href="#house">About</a></li><li><a href="#disciplines">Disciplines</a></li><li><a href="#membership">Membership</a></li><li><a href="#bridal">Bridal</a></li></ul></div>
+      <div><p class="label">Services</p><ul><li><a href="#rates" data-tab="hair-women">Hair</a></li><li><a href="#rates" data-tab="skin">Skin</a></li><li><a href="#rates" data-tab="scalp">Scalp</a></li><li><a href="#rates" data-tab="nails">Nails</a></li></ul></div>
       <div><p class="label">Visit</p><p>E3A, Shri Rangam, New Colony<br>Panch Batti, MI Road<br>Jaipur 302001</p></div>
       <div><p class="label">Contact</p><p><a href="tel:+919251049696">+91 92510 49696</a><br><a href="mailto:jaipurdesk@24societysalonandwellness.com">jaipurdesk@24societysalonandwellness.com</a><br><a href="https://instagram.com/24societysalonandwellness" rel="noopener">Instagram</a></p></div>
     </div>
