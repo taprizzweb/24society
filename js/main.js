@@ -218,6 +218,76 @@
 
   /* ---------- Contact form → composed email ---------- */
   const form = $('#form'), err = $('#formErr');
+
+  /* Date and time: next 14 days as a strip, half-hour slots from 09:00 to 20:00 (the house is open until 21:00).
+     Everything is read in Jaipur time, so a visitor abroad still sees the right "today". */
+  const datesEl = $('#dates'), timesEl = $('#times'), dateInput = $('#f-date'), slotHint = $('#slotHint'), slotSummary = $('#slotSummary');
+  const IST = 'Asia/Kolkata';
+  const nowIST = () => {
+    const p = Object.fromEntries(new Intl.DateTimeFormat('en-CA', { timeZone: IST, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date()).map(x => [x.type, x.value]));
+    return { date: `${p.year}-${p.month}-${p.day}`, mins: (+p.hour) * 60 + (+p.minute) };
+  };
+  const addDays = (iso, n) => { const [y, m, d] = iso.split('-').map(Number); const t = new Date(Date.UTC(y, m - 1, d + n)); return t.toISOString().slice(0, 10); };
+  const fmt = (iso, o) => new Intl.DateTimeFormat('en-GB', { timeZone: 'UTC', ...o }).format(new Date(iso + 'T00:00:00Z'));
+  const clock = (mins) => { const h = Math.floor(mins / 60), m = mins % 60, ap = h < 12 ? 'am' : 'pm'; return `${((h + 11) % 12) + 1}:${String(m).padStart(2, '0')} ${ap}`; };
+  const LEAD = 60; // a slot must start at least an hour from now
+  const slotsFor = (iso) => {
+    const now = nowIST(), all = [];
+    for (let m = 9 * 60; m <= 20 * 60; m += 30) all.push(m);
+    return iso === now.date ? all.filter(m => m >= now.mins + LEAD) : all;
+  };
+  let slotDate = '', slotTime = null; // slotTime in minutes from midnight
+
+  const renderSummary = () => {
+    if (slotDate && slotTime !== null) slotSummary.textContent = `Requested: ${fmt(slotDate, { weekday: 'long', day: 'numeric', month: 'long' })} at ${clock(slotTime)}`;
+    else if (slotDate) slotSummary.textContent = `Requested: ${fmt(slotDate, { weekday: 'long', day: 'numeric', month: 'long' })}. Now choose a time.`;
+    else slotSummary.textContent = '';
+  };
+  const renderTimes = () => {
+    if (!slotDate) { timesEl.innerHTML = ''; slotHint.textContent = 'Choose a date to see times. Times are Jaipur time.'; return; }
+    const slots = slotsFor(slotDate);
+    if (!slots.length) { timesEl.innerHTML = ''; slotHint.textContent = 'No more times today. Please pick another date.'; return; }
+    slotHint.textContent = 'The house confirms your exact slot personally. Times are Jaipur time.';
+    const groups = [['Morning', 0, 12 * 60], ['Afternoon', 12 * 60, 17 * 60], ['Evening', 17 * 60, 24 * 60]];
+    timesEl.innerHTML = groups.map(([name, a, b]) => {
+      const inGroup = slots.filter(m => m >= a && m < b);
+      return inGroup.length ? `<div class="times__group"><p class="times__label">${name}</p><div class="times__row">${inGroup.map(m => `<button type="button" role="radio" aria-checked="${m === slotTime}" data-m="${m}">${clock(m)}</button>`).join('')}</div></div>` : '';
+    }).join('');
+    if (slotTime !== null && !slots.includes(slotTime)) slotTime = null;
+  };
+  const renderDates = () => {
+    const today = nowIST().date;
+    let out = '';
+    for (let i = 0; i < 14; i++) {
+      const iso = addDays(today, i);
+      const gone = !slotsFor(iso).length;
+      out += `<button type="button" role="radio" aria-checked="${iso === slotDate}" data-d="${iso}"${gone ? ' disabled' : ''} aria-label="${fmt(iso, { weekday: 'long', day: 'numeric', month: 'long' })}"><span>${i === 0 ? 'Today' : fmt(iso, { weekday: 'short' })}</span><b>${fmt(iso, { day: '2-digit' })}</b><span>${fmt(iso, { month: 'short' })}</span></button>`;
+    }
+    datesEl.innerHTML = out;
+    dateInput.min = today; dateInput.max = addDays(today, 90);
+  };
+  const setDate = (iso) => { slotDate = iso; slotTime = null; renderDates(); renderTimes(); renderSummary(); dateInput.value = iso; };
+  datesEl.addEventListener('click', e => { const b = e.target.closest('[data-d]'); if (b && !b.disabled) setDate(b.dataset.d); });
+  dateInput.addEventListener('change', () => { if (dateInput.value && dateInput.value >= nowIST().date) setDate(dateInput.value); else if (!dateInput.value) setDate(''); });
+  timesEl.addEventListener('click', e => {
+    const b = e.target.closest('[data-m]');
+    if (!b) return;
+    slotTime = +b.dataset.m;
+    $$('[data-m]', timesEl).forEach(x => x.setAttribute('aria-checked', x === b));
+    renderSummary();
+  });
+  $('#slotClear').addEventListener('click', () => { slotDate = ''; slotTime = null; dateInput.value = ''; renderDates(); renderTimes(); renderSummary(); });
+  // Arrow keys move through a radio group
+  [datesEl, timesEl].forEach(g => g.addEventListener('keydown', e => {
+    if (!['ArrowRight', 'ArrowLeft', 'ArrowDown', 'ArrowUp'].includes(e.key)) return;
+    const items = $$('[role=radio]:not([disabled])', g), i = items.indexOf(document.activeElement);
+    if (i < 0) return;
+    e.preventDefault();
+    const n = items[(i + (e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : -1) + items.length) % items.length];
+    n.focus(); n.click();
+  }));
+  renderDates(); renderTimes();
+
   form.addEventListener('submit', e => {
     e.preventDefault();
     const v = n => form.elements[n].value.trim();
@@ -232,9 +302,16 @@
       form.elements[bad[0]].focus();
       return;
     }
+    if (slotDate && slotTime === null) {
+      err.hidden = false;
+      err.textContent = `Please pick a time for ${fmt(slotDate, { day: 'numeric', month: 'long' })}, or clear the date.`;
+      const first = $('[data-m]', timesEl); if (first) first.focus();
+      return;
+    }
     err.hidden = true;
-    const body = `Name: ${v('name')}\nPhone: ${v('phone')}\nEmail: ${v('email')}\nService: ${v('service') || '—'}\n\n${v('message')}`;
-    location.href = 'mailto:jaipurdesk@24societysalonandwellness.com?subject=' + encodeURIComponent('Enquiry — ' + (v('service') || 'The house')) + '&body=' + encodeURIComponent(body);
+    const when = slotDate && slotTime !== null ? `${fmt(slotDate, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })} at ${clock(slotTime)} (Jaipur time)` : 'Not chosen';
+    const body = `Name: ${v('name')}\nPhone: ${v('phone')}\nEmail: ${v('email')}\nService: ${v('service') || '—'}\nPreferred date and time: ${when}\n\n${v('message')}`;
+    location.href = 'mailto:jaipurdesk@24societysalonandwellness.com?subject=' + encodeURIComponent('Enquiry — ' + (v('service') || 'The house') + (slotDate ? ' — ' + fmt(slotDate, { day: 'numeric', month: 'short' }) : '')) + '&body=' + encodeURIComponent(body);
   });
 
   /* ---------- Hero slider ---------- */

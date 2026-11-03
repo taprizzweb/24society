@@ -407,6 +407,21 @@
           <option>Pilates</option><option>The 24 Society Café</option><option>Membership Enquiry</option>
           <option>Bridal Consultation</option><option>Private Experience</option>
         </select></div>
+      <fieldset class="field slot">
+        <legend>Preferred date</legend>
+        <div class="dates" id="dates" role="radiogroup" aria-label="Preferred date"></div>
+        <div class="slot__more">
+          <label for="f-date">Another date</label>
+          <input id="f-date" name="date" type="date">
+          <button type="button" id="slotClear">Clear</button>
+        </div>
+      </fieldset>
+      <fieldset class="field slot">
+        <legend>Preferred time</legend>
+        <div class="times" id="times" role="radiogroup" aria-label="Preferred time"></div>
+        <p class="slot__hint" id="slotHint">Choose a date to see times. Times are Jaipur time.</p>
+      </fieldset>
+      <p class="slot__summary" id="slotSummary" aria-live="polite"></p>
       <div class="field"><label for="f-msg">Message</label><textarea id="f-msg" name="message" rows="4"></textarea></div>
       <p class="form__err" id="formErr" role="alert" hidden></p>
       <button class="btn btn--dark" type="submit">Send enquiry</button>
