@@ -9,7 +9,8 @@
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const header = $('#header');
   const HEADER = 76;
-  const DESKTOP = '(min-width: 900px) and (prefers-reduced-motion: no-preference)';
+  // The pinned effects now run on phones too; only a reduced-motion preference turns them off.
+  const MOTION = '(prefers-reduced-motion: no-preference)';
 
   /* ---------- Smooth scroll (Lenis) ---------- */
   let lenis = null;
@@ -296,22 +297,33 @@
     }
 
     const mm = gsap.matchMedia();
-    mm.add(DESKTOP, () => {
-      // Hero shrinks into the collage
+    mm.add(MOTION, () => {
+      // Hero shrinks into the collage (a little less on a phone, so the title stays readable)
+      const small = window.innerWidth < 900;
       gsap.timeline({ scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom bottom', scrub: true } })
-        .to('#stage', { scale: .7, borderRadius: 28, ease: 'none' }, 0)
+        .to('#stage', { scale: small ? .76 : .7, borderRadius: small ? 22 : 28, ease: 'none' }, 0)
         .fromTo('.collage img', { scale: 1.18 }, { scale: 1, ease: 'none' }, 0);
 
       // Services: scrolling advances the timeline
       showcaseST = ScrollTrigger.create({ trigger: '#services', start: 'top top', end: 'bottom bottom',
         onUpdate: self => setActive(Math.min(tlItems.length - 1, Math.floor(self.progress * tlItems.length))) });
 
-      // Disciplines: pinned horizontal travel
-      const sec = $('#disciplines'), track = $('#cardsTrack');
+      // Disciplines: CSS-sticky pin (steadier than a fixed pin on phones); the section is as tall as
+      // the screen plus the distance the track has to travel, and scroll progress slides the track.
+      const sec = $('#disciplines'), pin = $('.cards__pin'), track = $('#cardsTrack');
       const dist = () => Math.max(0, track.scrollWidth - window.innerWidth);
-      gsap.to(track, { x: () => -dist(), ease: 'none', scrollTrigger: { trigger: sec, start: 'top top', end: () => '+=' + dist(), pin: true, scrub: 1, invalidateOnRefresh: true, anticipatePin: 1 } });
+      const setH = () => { sec.style.height = (pin.offsetHeight + dist()) + 'px'; };
+      setH();
+      ScrollTrigger.addEventListener('refreshInit', setH);
+      gsap.to(track, { x: () => -dist(), ease: 'none', scrollTrigger: { trigger: sec, start: 'top top', end: 'bottom bottom', scrub: true, invalidateOnRefresh: true } });
 
-      return () => { showcaseST = null; gsap.set(track, { clearProps: 'all' }); gsap.set('#stage', { clearProps: 'all' }); };
+      return () => {
+        showcaseST = null;
+        ScrollTrigger.removeEventListener('refreshInit', setH);
+        sec.style.height = '';
+        gsap.set(track, { clearProps: 'all' });
+        gsap.set('#stage', { clearProps: 'all' });
+      };
     });
   };
 
