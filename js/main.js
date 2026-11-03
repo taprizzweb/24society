@@ -87,30 +87,55 @@
     }
   });
 
-  /* ---------- Rate card (tabs component) ---------- */
-  const tabsEl = $('#tabs'), panelEl = $('#panel');
+  /* ---------- Rate card: browse, search, tick, reserve ---------- */
+  const tabsEl = $('#tabs'), panelEl = $('#panel'), searchEl = $('#q');
   const data = window.RATES || [];
   const op = s => String(s).replace(/\s+op(?=\n|$)/g, '<sup class="op">op</sup>');
-  const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
-  let activeTab = 0;
+  const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+  // Which option of the contact form each rate-card category maps to
+  const SERVICE_FOR = { 'hair-women': 'Hair Couture', 'hair-men': 'Hair Couture', 'colour-women': 'Hair Couture', 'colour-men': 'Hair Couture', rituals: 'Hair Couture', scalp: 'Korean Scalp', skin: 'Advanced Skin', face: 'Face Gym', body: 'Body Recovery', recovery: 'Recovery & Reset', nails: 'Nail Atelier', makeup: 'Makeup' };
+  const picks = new Map(); // "category::name" -> { cat, label, name }
+  const keyOf = (cat, name) => cat + '::' + name;
+  let activeTab = 0, query = '';
+
+  const pickBtn = (t, name) => `<button type="button" class="pick" data-k="${esc(keyOf(t.id, name))}" data-cat="${t.id}" data-name="${esc(name)}" aria-pressed="${picks.has(keyOf(t.id, name))}" aria-label="Add ${esc(name)} to your reservation"></button>`;
+
+  const tabHtml = (t) => {
+    if (t.type === 'tier') {
+      return `<div class="tbl-wrap"><table class="tbl"><thead><tr><th scope="col">Service</th>${t.tiers.map(x => `<th scope="col">${esc(x)}</th>`).join('')}</tr></thead><tbody>` +
+        t.rows.map(r => `<tr><td><div class="nm">${pickBtn(t, r[0])}<span>${esc(r[0])}</span></div></td>${r.slice(1).map(v => `<td>${v === '–' ? '–' : '₹' + op(esc(v))}</td>`).join('')}</tr>`).join('') + '</tbody></table></div>';
+    }
+    return '<div class="rrows">' + t.rows.map(r => `<div class="rrow"><div class="nm">${pickBtn(t, r[0])}<h4>${esc(r[0])}</h4></div><p>${esc(r[1])}</p><div class="price">${op(esc(r[2]))}</div></div>`).join('') + '</div>';
+  };
+
+  const searchHtml = (q) => {
+    const out = [];
+    data.forEach(t => {
+      const hits = t.rows.filter(r => (r[0] + ' ' + (t.type === 'rows' ? r[1] : '') + ' ' + t.label).toLowerCase().includes(q));
+      if (!hits.length) return;
+      const rows = hits.map(r => {
+        const price = t.type === 'tier' ? 'From ₹' + op(esc(r[1])) : op(esc(r[2]));
+        const desc = t.type === 'tier' ? 'Priced by stylist level.' : esc(r[1]);
+        return `<div class="rrow"><div class="nm">${pickBtn(t, r[0])}<h4>${esc(r[0])}</h4></div><p>${desc}</p><div class="price">${price}</div></div>`;
+      }).join('');
+      out.push(`<div class="group"><p class="label">${esc(t.label)}</p><div class="rrows">${rows}</div></div>`);
+    });
+    return out.length ? out.join('') : `<p class="rates__note">No service matches "${esc(q)}". Try another word, or call the house.</p>`;
+  };
+
   const renderPanel = (i, animate = true, refresh = true) => {
     const t = data[i];
-    let html = '';
-    if (t.type === 'tier') {
-      html = `<div class="tbl-wrap"><table class="tbl"><thead><tr><th scope="col">Service</th>${t.tiers.map(x => `<th scope="col">${esc(x)}</th>`).join('')}</tr></thead><tbody>` +
-        t.rows.map(r => `<tr><td>${esc(r[0])}</td>${r.slice(1).map(v => `<td>${v === '–' ? '–' : '₹' + op(esc(v))}</td>`).join('')}</tr>`).join('') + '</tbody></table></div>';
-    } else {
-      html = '<div class="rrows">' + t.rows.map(r => `<div class="rrow"><h4>${esc(r[0])}</h4><p>${esc(r[1])}</p><div class="price">${op(esc(r[2]))}</div></div>`).join('') + '</div>';
-    }
-    panelEl.innerHTML = `<div class="panel__in">${html}</div>`;
-    panelEl.setAttribute('aria-labelledby', 'tab-' + t.id);
+    panelEl.innerHTML = `<div class="panel__in">${query ? searchHtml(query) : tabHtml(t)}</div>`;
+    if (query) panelEl.removeAttribute('aria-labelledby'); else panelEl.setAttribute('aria-labelledby', 'tab-' + t.id);
     if (animate && !reduced) gsap.from($$('.tbl tbody tr, .rrow', panelEl), { y: 22, opacity: 0, duration: .9, ease: 'expo.out', stagger: .035 });
     // A refresh mid smooth-scroll would cancel it, so link-driven changes refresh once the scroll has landed.
     if (refresh) ScrollTrigger.refresh(); else setTimeout(() => ScrollTrigger.refresh(), 2400);
   };
+  const markTabs = () => $$('.tab', tabsEl).forEach((b, k) => { const on = !query && k === activeTab; b.setAttribute('aria-selected', on); b.tabIndex = k === activeTab ? 0 : -1; });
   const selectTab = (i, focus, fromLink) => {
     activeTab = i;
-    $$('.tab', tabsEl).forEach((b, k) => { b.setAttribute('aria-selected', k === i); b.tabIndex = k === i ? 0 : -1; });
+    if (query) { query = ''; searchEl.value = ''; }
+    markTabs();
     renderPanel(i, true, !fromLink);
     if (focus) $$('.tab', tabsEl)[i].focus();
   };
@@ -123,7 +148,53 @@
     if (e.key === 'Home') { e.preventDefault(); selectTab(0, true); }
     if (e.key === 'End') { e.preventDefault(); selectTab(n - 1, true); }
   });
+  let searchTimer;
+  searchEl.addEventListener('input', () => {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => {
+      const q = searchEl.value.trim().toLowerCase();
+      query = q.length > 1 ? q : '';
+      markTabs();
+      renderPanel(activeTab, false);
+    }, 180);
+  });
+
+  /* ---------- Your reservation: ticked services travel into the enquiry ---------- */
+  const pickList = $('#pickList'), pickEmpty = $('#pickEmpty'), pickGo = $('#pickGo'), pickbar = $('#pickbar'), pickCount = $('#pickCount');
+  const renderPicks = () => {
+    const items = [...picks.values()];
+    pickList.innerHTML = items.map(p => `<li><span>${esc(p.name)}<small>${esc(p.label)}</small></span><button type="button" data-remove="${esc(keyOf(p.cat, p.name))}" aria-label="Remove ${esc(p.name)}">Remove</button></li>`).join('');
+    pickEmpty.hidden = items.length > 0;
+    pickGo.disabled = !items.length;
+    pickbar.hidden = !items.length;
+    pickCount.textContent = items.length + (items.length === 1 ? ' service selected' : ' services selected');
+    $$('.pick', panelEl).forEach(b => b.setAttribute('aria-pressed', picks.has(b.dataset.k)));
+  };
+  panelEl.addEventListener('click', e => {
+    const b = e.target.closest('.pick');
+    if (!b) return;
+    const k = b.dataset.k;
+    if (picks.has(k)) picks.delete(k);
+    else picks.set(k, { cat: b.dataset.cat, label: data.find(t => t.id === b.dataset.cat).label, name: b.dataset.name });
+    renderPicks();
+  });
+  pickList.addEventListener('click', e => {
+    const b = e.target.closest('[data-remove]');
+    if (!b) return;
+    picks.delete(b.dataset.remove);
+    renderPicks();
+  });
+  const reservePicks = () => {
+    if (!picks.size) return;
+    const items = [...picks.values()];
+    const sel = $('#f-service'); if (sel) sel.value = SERVICE_FOR[items[0].cat] || '';
+    const msg = $('#f-msg'); if (msg) msg.value = 'I would like to reserve:\n' + items.map(p => `- ${p.name} (${p.label})`).join('\n');
+    scrollToEl($('#reserve'));
+  };
+  pickGo.addEventListener('click', reservePicks);
+  $('#pickBarGo').addEventListener('click', reservePicks);
   renderPanel(0, false);
+  renderPicks();
 
   /* ---------- Anchors, tab links, service prefill ---------- */
   document.addEventListener('click', e => {
@@ -295,6 +366,12 @@
       ScrollTrigger.batch('[data-reveal]', { start: 'top 90%', once: true,
         onEnter: b => gsap.to(b, { opacity: 1, y: 0, duration: 1.2, ease: 'expo.out', stagger: .09, overwrite: true }) });
     }
+
+    $$('.header__nav a').forEach(a => {
+      const t = $(a.getAttribute('href'));
+      if (t) ScrollTrigger.create({ trigger: t, start: 'top 45%', end: 'bottom 45%', onToggle: self => a.classList.toggle('is-current', self.isActive) });
+    });
+    ScrollTrigger.create({ trigger: '#reserve', start: 'top 85%', onToggle: self => pickbar.classList.toggle('is-off', self.isActive) });
 
     const mm = gsap.matchMedia();
     mm.add(MOTION, () => {

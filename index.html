@@ -34,6 +34,14 @@
 
 <header class="header" id="header">
   <a class="brand" href="#top" aria-label="24 Society Salon &amp; Wellness — home"><img src="img/logo.png" alt="24 Society Salon &amp; Wellness" width="413" height="225"></a>
+  <nav class="header__nav" aria-label="Main">
+    <a href="#services">Services</a>
+    <a href="#pilates">Pilates</a>
+    <a href="#cafe">Café</a>
+    <a href="#rates">Rate card</a>
+    <a href="#bridal">Bridal</a>
+    <a href="#membership">Membership</a>
+  </nav>
   <div class="header__right">
     <a class="btn btn--solid" href="#reserve">Reserve</a>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">
@@ -49,6 +57,8 @@
       <li><a href="#house">The house</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#disciplines">Disciplines</a></li>
+      <li><a href="#pilates">Pilates</a></li>
+      <li><a href="#cafe">The Café</a></li>
       <li><a href="#rates">Rate card</a></li>
       <li><a href="#bridal">Bridal</a></li>
       <li><a href="#membership">Membership</a></li>
@@ -176,6 +186,46 @@
  </div>
 </section>
 
+<!-- PILATES -->
+<section class="section on-graphite" id="pilates" aria-labelledby="pilatesTitle" style="padding-top:0">
+  <div class="wrap feature">
+    <div class="feature__media"><div class="feature__frame"><img src="img/pilates-1100.webp" srcset="img/pilates-1100.webp 1100w, img/pilates-2200.webp 2200w" sizes="(min-width:900px) 45vw, 100vw" alt="The Pilates Studio, with reformers on a timber floor" loading="lazy" width="1100" height="734"></div></div>
+    <div class="feature__copy">
+      <p class="label" data-reveal>The Pilates Studio</p>
+      <h2 class="display" id="pilatesTitle">The body, <em>disciplined.</em></h2>
+      <p class="lede" data-reveal>Small-group and private sessions on classical and contemporary reformers, engineered for posture, strength and the way you move through your day.</p>
+      <ul class="list" data-reveal>
+        <li><b>Reformer group</b><span>Small-group classes, maximum four members. Every session is corrected in real time.</span></li>
+        <li><b>Private reformer</b><span>One-to-one with a senior instructor, composed around your goal, your body, your calendar.</span></li>
+        <li><b>Mat Pilates</b><span>Foundation, breath and control.</span></li>
+        <li><b>Bridal Pilates</b><span>A programme built across your wedding calendar. Posture for the aisle, strength for the days.</span></li>
+        <li><b>Post-natal</b><span>A specialist protocol for a specific season.</span></li>
+        <li><b>Yoga &amp; sound, on the second floor</b><span>Hatha, Vinyasa, Restorative and private yoga, plus the Sound Recovery Room: sound bath, guided meditation and breathwork.</span></li>
+      </ul>
+      <a class="btn btn--solid" href="#reserve" data-service="Pilates">Reserve Pilates</a>
+    </div>
+  </div>
+</section>
+
+<!-- CAFE -->
+<section class="section on-graphite" id="cafe" aria-labelledby="cafeTitle" style="padding-top:0">
+  <div class="wrap feature feature--rev">
+    <div class="feature__media"><div class="feature__frame"><img src="img/cafe-1100.webp" srcset="img/cafe-1100.webp 1100w, img/cafe-2200.webp 2200w" sizes="(min-width:900px) 45vw, 100vw" alt="The 24 Society Café" loading="lazy" width="1100" height="734"></div></div>
+    <div class="feature__copy">
+      <p class="label" data-reveal>The 24 Society Café</p>
+      <h2 class="display" id="cafeTitle">Where the appointment ends and the <em>afternoon begins.</em></h2>
+      <p class="lede" data-reveal>Ceremonial matcha. Considered bites. A quiet room, a slow pour, and the only acceptable reason to linger between appointments.</p>
+      <ul class="list" data-reveal>
+        <li><b>Matcha &amp; tea</b><span>Ceremonial-grade matcha, single-origin loose leaf and a small tea menu composed with intention.</span></li>
+        <li><b>Coffee</b><span>Specialty coffee, quietly excellent. Espresso, filter and seasonal signatures.</span></li>
+        <li><b>Considered bites</b><span>A small, edited menu: clean, seasonal, elegant.</span></li>
+        <li><b>Private bookings</b><span>The Café can be reserved for private experiences. Contact the house for details.</span></li>
+      </ul>
+      <a class="btn btn--solid" href="#reserve" data-service="The 24 Society Café">Reserve the Café</a>
+    </div>
+  </div>
+</section>
+
 <!-- PRINCIPLES -->
 <section class="section on-graphite" aria-labelledby="princTitle" style="padding-top:0">
   <div class="wrap">
@@ -229,10 +279,33 @@
       <h2 class="display" id="ratesTitle">Every service.<br><em>Every price.</em></h2>
       <p class="rates__note" data-reveal>All prices in INR, exclusive of GST. Terms &amp; conditions apply. Hair pricing is by stylist level; all other services are single-priced. <sup>op</sup> marks onwards pricing.</p>
     </header>
-    <div class="tabs" role="tablist" aria-label="Service categories" id="tabs"></div>
-    <div class="panel" id="panel" role="tabpanel" tabindex="0"></div>
+    <div class="rates__layout">
+      <div class="rates__main">
+        <div class="search">
+          <label for="q">Search for a service</label>
+          <input id="q" type="search" placeholder="Search for a service" autocomplete="off">
+        </div>
+        <div class="tabs" role="tablist" aria-label="Service categories" id="tabs"></div>
+        <div class="panel" id="panel" role="tabpanel" tabindex="0"></div>
+      </div>
+      <aside class="pickpanel" id="pickpanel" aria-label="Your reservation">
+        <h3>Your reservation</h3>
+        <p class="pickpanel__empty" id="pickEmpty">Tick the services you want and we will send them with your enquiry.</p>
+        <ul class="pickpanel__list" id="pickList"></ul>
+        <button class="btn btn--dark" type="button" id="pickGo" disabled>Reserve these</button>
+        <dl class="pickpanel__info">
+          <div><dt>Find us</dt><dd>E3A, Shri Rangam, New Colony<br>Panch Batti, MI Road, Jaipur 302001</dd></div>
+          <div><dt>Open</dt><dd>Monday to Sunday, 09:00 to 21:00, by reservation</dd></div>
+          <div><dt>Call</dt><dd><a href="tel:+919251049696">+91 92510 49696</a></dd></div>
+        </dl>
+      </aside>
+    </div>
   </div>
 </section>
+<div class="pickbar" id="pickbar" hidden>
+  <span id="pickCount">0 selected</span>
+  <button class="btn btn--solid" type="button" id="pickBarGo">Reserve these</button>
+</div>
 
 <!-- BRIDAL -->
 <section class="section on-graphite" id="bridal" aria-labelledby="bridalTitle">
