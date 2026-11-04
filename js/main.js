@@ -311,7 +311,26 @@
     err.hidden = true;
     const when = slotDate && slotTime !== null ? `${fmt(slotDate, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })} at ${clock(slotTime)} (Jaipur time)` : 'Not chosen';
     const body = `Name: ${v('name')}\nPhone: ${v('phone')}\nEmail: ${v('email')}\nService: ${v('service') || '—'}\nPreferred date and time: ${when}\n\n${v('message')}`;
-    location.href = 'mailto:jaipurdesk@24societysalonandwellness.com?subject=' + encodeURIComponent('Enquiry — ' + (v('service') || 'The house') + (slotDate ? ' — ' + fmt(slotDate, { day: 'numeric', month: 'short' }) : '')) + '&body=' + encodeURIComponent(body);
+    const mailFallback = () => { location.href = 'mailto:jaipurdesk@24societysalonandwellness.com?subject=' + encodeURIComponent('Enquiry — ' + (v('service') || 'The house') + (slotDate ? ' — ' + fmt(slotDate, { day: 'numeric', month: 'short' }) : '')) + '&body=' + encodeURIComponent(body); };
+    const btn = $('#formBtn'), label = btn.textContent;
+    btn.disabled = true; btn.textContent = 'Sending…';
+    Promise.resolve(window.submitEnquiry ? window.submitEnquiry({
+      name: v('name'), phone: v('phone'), email: v('email'), service: v('service'), message: v('message'),
+      date: slotDate && slotTime !== null ? slotDate : (slotDate || ''), slot: slotTime !== null ? clock(slotTime) : '',
+      optin: form.elements.optin.checked
+    }) : { error: true }).then(r => {
+      if (r && r.error) throw r.error;
+      const done = $('#formDone');
+      $('#doneTitle').textContent = 'Thank you, ' + v('name').split(/\s+/)[0] + '.';
+      $('#doneText').textContent = slotDate && slotTime !== null
+        ? `We have your request for ${fmt(slotDate, { weekday: 'long', day: 'numeric', month: 'long' })} at ${clock(slotTime)}. The house will confirm your exact slot personally.`
+        : 'We have your enquiry. The house will be in touch personally.';
+      form.hidden = true; done.hidden = false; done.focus();
+    }).catch(() => {
+      btn.disabled = false; btn.textContent = label;
+      err.hidden = false; err.textContent = 'We could not send this just now. Your email app will open so the enquiry still reaches us.';
+      setTimeout(mailFallback, 1200);
+    });
   });
 
   /* ---------- Hero slider ---------- */

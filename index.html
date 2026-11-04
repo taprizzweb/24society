@@ -433,10 +433,16 @@
       </fieldset>
       <p class="slot__summary" id="slotSummary" aria-live="polite"></p>
       <div class="field"><label for="f-msg">Message</label><textarea id="f-msg" name="message" rows="4"></textarea></div>
+      <label class="optin" for="f-opt"><input id="f-opt" name="optin" type="checkbox"><span>Send me offers and updates on WhatsApp. You can opt out at any time.</span></label>
       <p class="form__err" id="formErr" role="alert" hidden></p>
-      <button class="btn btn--dark" type="submit">Send enquiry</button>
-      <p class="form__hint">Opens your email app with the enquiry ready to send.</p>
+      <button class="btn btn--dark" type="submit" id="formBtn">Send enquiry</button>
+      <p class="form__hint">The house replies personally to confirm your request.</p>
     </form>
+    <div class="form__done" id="formDone" role="status" tabindex="-1" hidden>
+      <p class="label">Request received</p>
+      <h3 class="display" id="doneTitle">Thank you.</h3>
+      <p id="doneText"></p>
+    </div>
   </div>
 </section>
 </main>
@@ -461,6 +467,8 @@
 <script src="js/ScrollTrigger.min.js"></script>
 <script src="js/lenis.min.js"></script>
 <script src="js/data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="js/db.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

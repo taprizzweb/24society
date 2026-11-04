@@ -298,6 +298,13 @@ details p{padding-bottom:24px;color:var(--b-300);max-width:62ch}
 .form__err{font-size:.875rem;color:var(--g-900);border-left:2px solid var(--g-900);padding-left:12px}
 .form__hint{font-size:.875rem;color:var(--g-600)}
 .form .btn{justify-self:start}
+.optin{display:flex;gap:12px;align-items:flex-start;font:400 .875rem/1.5 var(--sans);color:var(--g-600);cursor:pointer}
+.optin input{width:18px;height:18px;margin-top:2px;accent-color:var(--g-900);flex:none}
+.form__done{display:grid;gap:12px;align-content:start;background:var(--b-50);padding:clamp(24px,4vw,44px);border:1px solid var(--b-300);border-radius:var(--r)}
+.form__done:focus{outline:0}
+.form__done[hidden]{display:none}
+.form[hidden]{display:none}
+.form__done .display{font-size:clamp(1.75rem,3vw,2.5rem);line-height:1.1}
 
 /* ---------- Footer ---------- */
 .footer{background:var(--g-950);color:var(--b-300);padding-block:clamp(64px,9vw,120px) 28px}
