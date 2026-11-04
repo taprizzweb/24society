@@ -431,7 +431,15 @@ details p{padding-bottom:24px;color:var(--b-300);max-width:62ch}
 @media (min-width:900px){.hero__desk{display:none}}
 
 /* ---------- Reservation on dark, so the glass card reads like the reference ---------- */
-#reserve.on-graphite{border-top:1px solid var(--g-700)}
+/* The whole section is one dark surface with the aurora glow behind it; the card has no box of its own. */
+#reserve.on-graphite{border-top:1px solid var(--g-700);background:var(--g-950);position:relative;isolation:isolate;overflow:hidden}
+#reserve.on-graphite::before{content:"";position:absolute;inset:-12%;z-index:-1;pointer-events:none;filter:blur(36px);background:
+  radial-gradient(34% 26% at 74% 14%,rgba(150,108,176,.52),transparent 72%),
+  radial-gradient(36% 30% at 96% 42%,rgba(66,170,134,.46),transparent 72%),
+  radial-gradient(34% 28% at 62% 78%,rgba(206,160,96,.44),transparent 72%),
+  radial-gradient(30% 24% at 92% 94%,rgba(184,92,118,.36),transparent 72%)}
+#reserve .stage{background:transparent;padding:0;border-radius:0;overflow:visible;isolation:auto}
+#reserve .stage::before{content:none}
 #reserve.on-graphite .reserve__info>p:not(.label){color:var(--b-300)}
 #reserve.on-graphite .facts{border-top-color:var(--g-700)}
 #reserve.on-graphite .facts dt{color:var(--b-400)}
