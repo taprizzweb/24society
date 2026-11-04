@@ -430,6 +430,16 @@ details p{padding-bottom:24px;color:var(--b-300);max-width:62ch}
 .hero__desk{display:inline-flex;align-items:center;margin-top:14px;min-height:44px;font:500 1rem/1 var(--sans);color:var(--b-100);text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:1px}
 @media (min-width:900px){.hero__desk{display:none}}
 
+/* ---------- Reservation on dark, so the glass card reads like the reference ---------- */
+#reserve.on-graphite{border-top:1px solid var(--g-700)}
+#reserve.on-graphite .reserve__info>p:not(.label){color:var(--b-300)}
+#reserve.on-graphite .facts{border-top-color:var(--g-700)}
+#reserve.on-graphite .facts dt{color:var(--b-400)}
+#reserve.on-graphite .btn--outline-dark{border-color:rgba(226,223,219,.5);color:var(--b-100)}
+#reserve.on-graphite .btn--outline-dark:hover{background:var(--b-100);color:var(--g-900);border-color:var(--b-100)}
+.form__title{font:700 clamp(1.5rem,2.4vw,2rem)/1.2 var(--serif);color:var(--b-50)}
+.form__title em{font-style:italic;color:var(--beige)}
+
 /* ---------- Reveal primitives ---------- */
 .js [data-reveal]{opacity:0;transform:translateY(28px)}
 .js [data-hero]{opacity:0}
