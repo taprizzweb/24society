@@ -400,6 +400,29 @@ details p{padding-bottom:24px;color:var(--b-300);max-width:62ch}
 .slot__summary:empty{display:none}
 .slot input:focus-visible,.slot button:focus-visible{outline:2px solid var(--g-800);outline-offset:2px}
 
+/* ---------- Call the desk: header button and an always-on floating circle ---------- */
+.deskcall{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 16px;border-radius:999px;border:1px solid rgba(226,223,219,.5);font:500 .9375rem/1 var(--sans);color:var(--b-100);white-space:nowrap;transition:background .3s var(--ease),border-color .3s var(--ease)}
+.deskcall:hover{background:rgba(226,223,219,.12);border-color:var(--b-100)}
+.deskcall svg,.callfab svg{width:18px;height:18px;flex:none;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.deskcall__n{display:none;color:var(--b-300)}
+@media (min-width:1280px){.deskcall__n{display:inline}}
+@media (max-width:639px){.deskcall{width:44px;padding:0;justify-content:center}.deskcall__t,.deskcall__n{display:none}}
+
+.callfab{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:calc(16px + env(safe-area-inset-bottom));z-index:85;display:grid;place-items:center;width:60px;height:60px;border-radius:50%;background:var(--beige);color:var(--g-900);border:1px solid var(--b-300);transition:background .3s var(--ease),transform .45s var(--ease)}
+.callfab svg{width:24px;height:24px}
+.callfab:hover{background:var(--b-200);transform:scale(1.06)}
+.callfab__tip{position:absolute;right:calc(100% + 12px);top:50%;transform:translate(8px,-50%);opacity:0;pointer-events:none;background:var(--g-900);color:var(--b-100);border:1px solid var(--g-700);padding:12px 18px;border-radius:999px;white-space:nowrap;font:500 .9375rem/1 var(--sans);transition:opacity .3s var(--ease),transform .45s var(--ease)}
+.callfab:focus-visible .callfab__tip,.callfab.is-hint .callfab__tip{opacity:1;transform:translate(0,-50%)}
+@media (hover:hover){.callfab:hover .callfab__tip{opacity:1;transform:translate(0,-50%)}}
+.callfab:focus-visible{outline:2px solid var(--b-100);outline-offset:3px}
+.menu-open .callfab{display:none}
+/* keep clear of the reservation bar on phones */
+@media (max-width:1099px){.pickbar:not([hidden]):not(.is-off)+.callfab{bottom:calc(88px + env(safe-area-inset-bottom))}}
+
+/* On phones the header call button is just an icon, so the front page also says it in words */
+.hero__desk{display:inline-flex;align-items:center;margin-top:14px;min-height:44px;font:500 1rem/1 var(--sans);color:var(--b-100);text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:1px}
+@media (min-width:900px){.hero__desk{display:none}}
+
 /* ---------- Reveal primitives ---------- */
 .js [data-reveal]{opacity:0;transform:translateY(28px)}
 .js [data-hero]{opacity:0}

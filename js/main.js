@@ -351,7 +351,7 @@
     const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
     tl.fromTo('.hero__slide.is-active', { scale: 1.18 }, { scale: 1, duration: 3.2 }, 0)
       .to('.hero__title [data-hero]', { yPercent: 0, y: 0, duration: 1.5, stagger: .14 }, .15)
-      .to('.hero__cta, .hero__tag, .hero__meter', { opacity: 1, duration: 1.1, stagger: .12 }, .7)
+      .to('.hero__cta, .hero__desk, .hero__tag, .hero__meter', { opacity: 1, duration: 1.1, stagger: .12 }, .7)
       .add(() => { setRunning(true); startTimer(); }, 1.0);
   };
   const intro = async () => {
@@ -484,6 +484,13 @@
   scrollFX();
   window.addEventListener('load', () => ScrollTrigger.refresh());
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => ScrollTrigger.refresh());
+
+  // Once the intro has played, the call circle shows its label for a few seconds so people notice it
+  const callfab = $('#callfab');
+  if (callfab) window.addEventListener('load', () => setTimeout(() => {
+    callfab.classList.add('is-hint');
+    setTimeout(() => callfab.classList.remove('is-hint'), 5200);
+  }, reduced ? 800 : 6200));
 
   if (!reduced) startTimer(); else { const bar = $('.hero__meter i'); if (bar) bar.style.display = 'none'; }
   intro();
