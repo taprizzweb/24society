@@ -15,7 +15,7 @@
   /* ---------- Smooth scroll (Lenis) ---------- */
   let lenis = null;
   if (!reduced && window.Lenis) {
-    lenis = new Lenis({ lerp: 0.085, wheelMultiplier: 0.95, smoothWheel: true });
+    lenis = new Lenis({ lerp: 0.13, wheelMultiplier: 1, smoothWheel: true });
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add(t => lenis.raf(t * 1000));
     gsap.ticker.lagSmoothing(0);
@@ -376,21 +376,21 @@
   const intro = async () => {
     const ready = Promise.race([
       Promise.all([document.fonts ? document.fonts.ready : 0, slides[0].decode ? slides[0].decode().catch(() => 0) : 0]),
-      new Promise(r => setTimeout(r, 3500))
+      new Promise(r => setTimeout(r, 2200))
     ]);
     if (reduced) { await ready; loader.remove(); gsap.set('[data-hero]', { opacity: 1, y: 0, yPercent: 0 }); return; }
     const o = { v: 0 };
     const tl = gsap.timeline();
-    tl.to('.loader__logo', { opacity: 1, duration: .9, ease: 'power2.out' }, 0)
-      .to(o, { v: 24, duration: 1.7, ease: 'power2.inOut', onUpdate: () => {
+    tl.to('.loader__logo', { opacity: 1, duration: .6, ease: 'power2.out' }, 0)
+      .to(o, { v: 24, duration: 1.05, ease: 'power2.inOut', onUpdate: () => {
         num.textContent = String(Math.round(o.v)).padStart(2, '0');
         $('.loader__count i').style.setProperty('--p', o.v / 24);
       } }, 0);
     await ready;
     await tl.then();
     gsap.timeline()
-      .to('.loader__inner', { opacity: 0, y: -16, duration: .6, ease: 'power2.in' })
-      .to(loader, { yPercent: -100, duration: 1.1, ease: 'expo.inOut' }, '-=.15')
+      .to('.loader__inner', { opacity: 0, y: -16, duration: .4, ease: 'power2.in' })
+      .to(loader, { yPercent: -100, duration: .9, ease: 'expo.inOut' }, '-=.15')
       .add(heroIn, '-=.55')
       .add(() => loader.remove());
   };
@@ -501,6 +501,13 @@
   };
 
   scrollFX();
+  // The collage and the later hero slides are only seen after a scroll or a few seconds in, so they load once the page itself is ready.
+  const loadHidden = () => $$('img[data-src]').forEach(im => {
+    if (im.dataset.srcset) im.srcset = im.dataset.srcset;
+    im.src = im.dataset.src;
+    im.decoding = 'async';
+  });
+  if (document.readyState === 'complete') setTimeout(loadHidden, 200); else window.addEventListener('load', () => setTimeout(loadHidden, 200));
   window.addEventListener('load', () => ScrollTrigger.refresh());
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => ScrollTrigger.refresh());
 

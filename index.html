@@ -12,8 +12,16 @@
 <meta name="theme-color" content="#1b1a1a">
 <link rel="preload" href="fonts/tinos-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/josefin-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="img/home-2200.webp" imagesrcset="img/home-1100.webp 1100w, img/home-2200.webp 2200w" imagesizes="100vw" fetchpriority="high">
 <link rel="stylesheet" href="css/style.css">
 <script>document.documentElement.classList.add('js')</script>
+<script src="js/gsap.min.js" defer></script>
+<script src="js/ScrollTrigger.min.js" defer></script>
+<script src="js/lenis.min.js" defer></script>
+<script src="js/data.js" defer></script>
+<script src="js/db.js" defer></script>
+<script src="js/main.js" defer></script>
+
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"HairSalon","name":"24 Society Salon & Wellness",
 "url":"https://www.24societysalonandwellness.com/","telephone":"+91 92510 49696",
@@ -85,20 +93,20 @@
 <section class="hero" id="top" aria-label="Introduction">
   <div class="hero__pin">
     <div class="collage" aria-hidden="true">
-      <img src="img/hair-1100.webp" alt="" width="1100" height="734">
-      <img src="img/cafe-1100.webp" alt="" width="1100" height="734">
-      <img src="img/skin-1100.webp" alt="" width="1100" height="734">
-      <img src="img/bridal-1100.webp" alt="" width="1100" height="788">
-      <img src="img/home-1100.webp" alt="" width="1100" height="734">
-      <img src="img/pilates-1100.webp" alt="" width="1100" height="734">
+      <img data-src="img/hair-1100.webp" alt="" width="1100" height="734">
+      <img data-src="img/cafe-1100.webp" alt="" width="1100" height="734">
+      <img data-src="img/skin-1100.webp" alt="" width="1100" height="734">
+      <img data-src="img/bridal-1100.webp" alt="" width="1100" height="788">
+      <img data-src="img/home-1100.webp" alt="" width="1100" height="734">
+      <img data-src="img/pilates-1100.webp" alt="" width="1100" height="734">
     </div>
     <div class="hero__stage" id="stage">
       <div class="hero__slides" aria-hidden="true">
         <img class="hero__slide is-active" src="img/home-2200.webp" srcset="img/home-1100.webp 1100w, img/home-2200.webp 2200w" sizes="100vw" alt="" width="2200" height="1467" fetchpriority="high">
-        <img class="hero__slide" src="img/hair-2200.webp" srcset="img/hair-1100.webp 1100w, img/hair-2200.webp 2200w" sizes="100vw" alt="" width="2200" height="1467">
-        <img class="hero__slide" src="img/skin-2200.webp" srcset="img/skin-1100.webp 1100w, img/skin-2200.webp 2200w" sizes="100vw" alt="" width="2200" height="1467">
-        <img class="hero__slide" src="img/pilates-2200.webp" srcset="img/pilates-1100.webp 1100w, img/pilates-2200.webp 2200w" sizes="100vw" alt="" width="2200" height="1467">
-        <img class="hero__slide" src="img/cafe-2200.webp" srcset="img/cafe-1100.webp 1100w, img/cafe-2200.webp 2200w" sizes="100vw" alt="" width="2200" height="1467">
+        <img class="hero__slide" data-src="img/hair-2200.webp" data-srcset="img/hair-1100.webp 1100w, img/hair-2200.webp 2200w" sizes="100vw" alt="" width="2200" height="1467">
+        <img class="hero__slide" data-src="img/skin-2200.webp" data-srcset="img/skin-1100.webp 1100w, img/skin-2200.webp 2200w" sizes="100vw" alt="" width="2200" height="1467">
+        <img class="hero__slide" data-src="img/pilates-2200.webp" data-srcset="img/pilates-1100.webp 1100w, img/pilates-2200.webp 2200w" sizes="100vw" alt="" width="2200" height="1467">
+        <img class="hero__slide" data-src="img/cafe-2200.webp" data-srcset="img/cafe-1100.webp 1100w, img/cafe-2200.webp 2200w" sizes="100vw" alt="" width="2200" height="1467">
       </div>
       <div class="hero__scrim" aria-hidden="true"></div>
       <div class="hero__content">
@@ -466,12 +474,9 @@
   </div>
 </footer>
 
-<script src="js/gsap.min.js"></script>
-<script src="js/ScrollTrigger.min.js"></script>
-<script src="js/lenis.min.js"></script>
-<script src="js/data.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
-<script src="js/db.js"></script>
-<script src="js/main.js"></script>
+<script>
+/* The database library is only needed when the form is sent, so it loads after the page, never in the way. */
+addEventListener('load',function(){setTimeout(function(){var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js';s.async=true;document.head.appendChild(s)},800)});
+</script>
 </body>
 </html>
