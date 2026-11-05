@@ -339,24 +339,32 @@
   const numEl = $('#slideNum'), nameEl = $('#slideName'), barEl = $('#slideBar');
   $('#slideTotal').textContent = String(slides.length).padStart(2, '0');
   let cur = 0, timer = null, running = false, heroVisible = true;
-  const DUR = 6.5;
+  const DUR = 3.4;
   const startTimer = () => {
     if (timer) timer.kill();
     timer = gsap.fromTo(barEl, { scaleX: 0 }, { scaleX: 1, duration: DUR, ease: 'none', onComplete: () => go((cur + 1) % slides.length) });
     if (!running) timer.pause();
   };
+  // Film-cut transition: the next frame wipes across like a projector gate, with a quick exposure flash.
   const go = (n) => {
     const from = slides[cur], to = slides[n];
     cur = n;
-    gsap.set(to, { opacity: 0, scale: 1.14, zIndex: 2 });
     to.classList.add('is-active');
-    gsap.to(to, { opacity: 1, duration: 1.6, ease: 'power2.inOut' });
-    gsap.to(to, { scale: 1, duration: DUR + 2.5, ease: 'power1.out' });
-    gsap.to(from, { opacity: 0, duration: 1.6, ease: 'power2.inOut', onComplete: () => { from.classList.remove('is-active'); gsap.set(from, { zIndex: 1 }); gsap.set(to, { zIndex: 1 }); } });
-    gsap.to([numEl, nameEl], { y: -8, opacity: 0, duration: .35, ease: 'power2.in', onComplete: () => {
+    gsap.killTweensOf([from, to]);
+    gsap.set(from, { zIndex: 1 });
+    gsap.set(to, { opacity: 1, scale: 1.1, xPercent: 0, zIndex: 2, clipPath: 'inset(0 0 0 100%)', filter: 'brightness(1.6)' });
+    gsap.to(to, { clipPath: 'inset(0 0 0 0%)', duration: .8, ease: 'expo.inOut' });
+    gsap.to(to, { filter: 'brightness(1)', duration: .9, ease: 'power2.out' });
+    gsap.to(to, { scale: 1, duration: DUR + 1, ease: 'power1.out' });
+    gsap.to(from, { xPercent: -10, duration: .8, ease: 'expo.inOut', onComplete: () => {
+      from.classList.remove('is-active');
+      gsap.set(from, { opacity: 0, xPercent: 0, zIndex: 1 });
+      gsap.set(to, { clipPath: 'none', filter: 'none', zIndex: 1 });
+    } });
+    gsap.to([numEl, nameEl], { y: -8, opacity: 0, duration: .25, ease: 'power2.in', onComplete: () => {
       numEl.textContent = String(n + 1).padStart(2, '0');
       nameEl.textContent = names[n];
-      gsap.fromTo([numEl, nameEl], { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: .8, ease: 'expo.out' });
+      gsap.fromTo([numEl, nameEl], { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: .6, ease: 'expo.out' });
     } });
     startTimer();
   };
